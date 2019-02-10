@@ -1,0 +1,12 @@
+﻿@model IEnumerable<Product>
+
+
+    @foreach (var item in Model)
+    {
+        <div>
+            <h1>@item.Name</h1>
+            @item.Description
+            <h3> @String.Format($"{item.Price:C2}")</h3>
+        </div>
+    }
+
