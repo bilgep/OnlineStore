@@ -17,7 +17,14 @@ namespace OnlineStore.Controllers
         }
         #endregion
 
-        public ViewResult List() => View(repository.Products);
+
+        public int PageSize = 2;
+
+        // productPage = 1 (displays first page as default if the page is not specified
+        public ViewResult List(int productPage = 1) => View(repository.Products
+            .OrderBy(x => x.Name)
+            .Skip((productPage-1) * PageSize)
+            .Take(PageSize));
     
     }                                                                       
 }

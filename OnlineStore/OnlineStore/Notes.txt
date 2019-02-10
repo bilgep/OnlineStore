@@ -1,0 +1,3 @@
+﻿* EF Core Command Line initialization Commands: 
+"dotnet ef migrations add Initial"
+"dotnet ef database update"

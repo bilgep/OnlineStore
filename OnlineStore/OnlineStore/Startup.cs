@@ -62,6 +62,9 @@ namespace OnlineStore
             });
             app.UseStaticFiles();
             app.UseStatusCodePages();
+
+            // Appending IProductReposity data to the current app (IApplicationBuilder =  Configuration)
+            SeedData.EnsurePopulated(app);
             
         }
     }

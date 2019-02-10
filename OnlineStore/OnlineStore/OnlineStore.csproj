@@ -16,7 +16,6 @@
     <PackageReference Include="Microsoft.AspNetCore.All" Version="2.1.0"/>
     <DotNetCliToolReference Include="Microsoft.EntityFrameworkCore.Tools.DotNet" Version="2.0.0"/> <!-- EF Core Version 2.1 is still in the preview stage -->
 
-    <PackageReference Include="Microsoft.AspNetCore.All" Version="2.1.0" />
   </ItemGroup>
 
 </Project>
