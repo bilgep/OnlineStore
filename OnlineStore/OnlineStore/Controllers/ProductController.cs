@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using OnlineStore.Models;
+using OnlineStore.Models.ViewModels;
 
 namespace OnlineStore.Controllers
 {
@@ -20,11 +21,19 @@ namespace OnlineStore.Controllers
 
         public int PageSize = 2;
 
-        // productPage = 1 (displays first page as default if the page is not specified
-        public ViewResult List(int productPage = 1) => View(repository.Products
-            .OrderBy(x => x.Name)
-            .Skip((productPage-1) * PageSize)
-            .Take(PageSize));
-    
-    }                                                                       
+        public ViewResult List(int productPage = 1) => View(new ProductListViewModel
+        {
+            Products = repository.Products
+            .OrderBy(p => p.ProductID)
+            .Skip((productPage - 1) * PageSize)
+            .Take(PageSize),
+
+            PagingInfo = new PagingInfo
+            {
+                CurrentPage = productPage,
+                ItemsPerPage = PageSize,
+                TotalItems = repository.Products.Count()
+            }
+        });
+    }
 }
