@@ -59,6 +59,7 @@ namespace OnlineStore
 
             app.UseMvc(routes => {
                 routes.MapRoute(name:"default", template:"{controller=Product}/{action=List}/{id?}");
+                routes.MapRoute(name:"pagination", template:"Products/Page{productPage}", defaults:new { Controller="Product",action="List"});
             });
             app.UseStaticFiles();
             app.UseStatusCodePages();

@@ -1,16 +1,30 @@
 ﻿@*@model IEnumerable<Product>*@
 
+
 @model ProductListViewModel
 
-    @foreach (var item in Model.Products)
+@foreach (var p in Model.Products)
+{
+    @Html.Partial("ProductSummary", p)
+}
+
+@*@foreach (var item in Model.Products)
     {
-        <div>
-            <h1>@item.Name</h1>
-            @item.Description
+
+
+        <div class="card m-1 p-1">
+            <div class="card-header m-1 p-1">
+                <h4>@item.Name</h4>
+            </div>
             <h3> @String.Format($"{item.Price:C2}")</h3>
+            <div class="card-text">
+                @item.Description
+            </div>
         </div>
-    }
 
+    }*@
 
-
-<div page-model="@Model.PagingInfo" page-action="List"></div>
+<div page-model="@Model.PagingInfo" page-action="List" page-classes-enabled="true"
+     page-class="btn" page-class-normal="btn-secondary"
+     page-class-selected="btn-primary" class="btn-group pull-right m-1">
+</div>
