@@ -16,6 +16,8 @@ namespace OnlineStore.Infrastructure
         private IUrlHelperFactory urlHelperFactory;
         public PageLinkTagHelper(IUrlHelperFactory helperFactory ) => urlHelperFactory = helperFactory;
 
+        [HtmlAttributeName(DictionaryAttributePrefix = "page-url-")]
+        public Dictionary<string, object> PageUrlValues { get; set; } = new Dictionary<string, object>();
 
         [ViewContext]
         [HtmlAttributeNotBound]
@@ -34,6 +36,10 @@ namespace OnlineStore.Infrastructure
             for (int i = 1; i <= PageModel.TotalPages(); i++)
             {
                 TagBuilder tag = new TagBuilder("a");
+
+                PageUrlValues["productPage"] = i;
+                tag.Attributes["href"] = urlHelper.Action(PageAction, PageUrlValues);
+
                 tag.Attributes["href"] = urlHelper.Action(PageAction,
                 new { productPage = i });
                 if (PageClassesEnabled)

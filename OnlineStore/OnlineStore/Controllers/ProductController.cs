@@ -21,9 +21,10 @@ namespace OnlineStore.Controllers
 
         public int PageSize = 2;
 
-        public ViewResult List(int productPage = 1) => View(new ProductListViewModel
+        public ViewResult List(string category, int productPage = 1) => View(new ProductListViewModel
         {
             Products = repository.Products
+            .Where(p => p.Category == category || category == null)
             .OrderBy(p => p.ProductID)
             .Skip((productPage - 1) * PageSize)
             .Take(PageSize),
@@ -33,7 +34,9 @@ namespace OnlineStore.Controllers
                 CurrentPage = productPage,
                 ItemsPerPage = PageSize,
                 TotalItems = repository.Products.Count()
-            }
+            },
+
+            CurrentCategory = category
         });
     }
 }
