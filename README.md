@@ -9,3 +9,4 @@ Contains:
 * Custom Tag Helper
 * Bootstrap styling
 * Client side library management with LibMan
+* View Component
